@@ -4,7 +4,7 @@ from time import sleep
 import numpy as np
 
 sample_rate=3200
-length = 5
+length_s = 5
 
 def read_data():
 	os.system(f'sudo adxl345spi -t {length_s} -f {sample_rate} -s out.csv')
@@ -18,6 +18,6 @@ def read_data():
 	
 ser = serial.Serial('/dev/ttyS0', 9600)
 while True:
-	recieved_data = ser.read()
+	recieved_data = ser.read().decode()
 	if recieved_data == 'r':
 		read_data()
